@@ -3,6 +3,8 @@ const cors = require("cors")
 const path = require('path')
 const connectDB = require("../db/config")
 
+const authRoute = require("../routes/auth")
+
 class Server {
 
    constructor() {
@@ -10,6 +12,8 @@ class Server {
       this.app = express()
 
       this.#middleware()
+
+      this.#routes()
    }
 
    #middleware(){
@@ -21,11 +25,13 @@ class Server {
       this.app.use( cors() )
    }
 
+   #routes(){
+      this.app.use( "/auth", authRoute )
+   }
+
 
    start(){
       try {
-         
-         this.#middleware()
          
          connectDB( () => {
             this.app.listen( this.port, () => {

@@ -8,6 +8,7 @@ const database = process.env.DATABASE
 const connectDB = ( callback ) => {
    try {
       mongoose.connect( `${ cnn }/${ database }`, {} ).then( () =>{
+         console.log("");
          console.log( "DB connected Successfully!!!");
          callback()
       } ).catch( error => {
