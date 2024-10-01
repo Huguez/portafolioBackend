@@ -18,8 +18,8 @@ const UserSchema = Schema( {
    timestamps: true
 } )
 
-User.method( "toJSON", function( doc, ret ){
-   const { __v, id, password, ...obj } = this.toObject()
+UserSchema.method( "toJSON", function( doc, ret ){
+   const { __v, _id, password, ...obj } = this.toObject()
    obj.uid = _id
    return obj
 } )
