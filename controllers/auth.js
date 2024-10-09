@@ -1,11 +1,11 @@
-const { Request, Response } = require( "express" );
+const { request, response } = require( "express" );
 const bcrytpjs = require("bcryptjs")
 const User = require("../models/User")
 const { generateJWT } = require("../helpers/jwt")
 
 const salt = bcrytpjs.genSaltSync()
 
-const login = async ( req = Request, res = Response ) => {
+const login = async ( req = request, res = response ) => {
    try {
       const { email, password } = req.body
 
@@ -41,7 +41,7 @@ const login = async ( req = Request, res = Response ) => {
    }
 }
 
-const register = async ( req = Request, res = Response ) => {
+const register = async ( req = request, res = response ) => {
    try {
       const { username, password, email } = req.body
 

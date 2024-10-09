@@ -4,6 +4,8 @@ const path = require('path')
 const connectDB = require("../db/config")
 
 const authRoute = require("../routes/auth")
+const articleRoute = require("../routes/article")
+const notFound = require("../middleware/notFound")
 
 class Server {
 
@@ -27,16 +29,17 @@ class Server {
 
    #routes(){
       this.app.use( "/auth", authRoute )
+
+      this.app.use( '/articles', articleRoute )
+
+      this.app.use( "/*", notFound )
    }
 
 
    start(){
       try {
-         
          connectDB( () => {
-            this.app.listen( this.port, () => {
-               console.log( `Server running on http://localhost:${ this.port }/` )   
-            } )
+            this.app.listen( this.port, () => console.log( `Server running on http://localhost:${ this.port }/` ) )
          } )
       } catch ( error ) {
          console.log( error );      
