@@ -1,12 +1,14 @@
 
-const validateBody = async ( body ) => {
+const validateBody = async ( value ) => {
    
-   if( body.length < 1 ){
+   const cuerpo = JSON.parse( value )
+
+   if( cuerpo.length < 1 ){
       throw new Error( "Body is empty" )
    }
-   
-   for (let i = 0; i < body.length; i++) {
-      const { type, content } = body[i];
+
+   for (let i = 0; i < cuerpo.length; i++) {
+      const { type, content } = cuerpo[i];
 
       const tipos = [ "texto", "imagenes", "code", "lista" ]
 
@@ -28,6 +30,8 @@ const validateBody = async ( body ) => {
          }
       } );
    }
+
+   return 
 }
 
 module.exports = validateBody

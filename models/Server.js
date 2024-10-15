@@ -1,4 +1,5 @@
 const express = require("express")
+const bodyParser = require('body-parser');
 const cors = require("cors")
 const path = require('path')
 const connectDB = require("../db/config")
@@ -10,7 +11,7 @@ const notFound = require("../middleware/notFound")
 class Server {
 
    constructor() {
-      this.port = process.env.PORT
+      this.port = process.env.PORT || 8080
       this.app = express()
 
       this.#middleware()
@@ -22,8 +23,10 @@ class Server {
       
       this.app.use( express.static( path.resolve( __dirname, '../public' ) ) );
       
-      this.app.use( express.json() )
-    
+      this.app.use( bodyParser.urlencoded({ extended: false }) )
+
+      this.app.use( bodyParser.json() );
+
       this.app.use( cors() )
    }
 

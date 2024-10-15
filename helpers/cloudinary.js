@@ -10,8 +10,11 @@ cloudinary.config({
 })
 
 const { upload, destroy } = cloudinary.uploader
+const { delete_folder, resources,  } = cloudinary.api
 
 module.exports = {
    upload,
-   destroy
+   destroy,
+   delete_folder,
+   resources
 }
