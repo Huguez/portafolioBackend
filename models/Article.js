@@ -26,6 +26,8 @@ const ArticleSchema = Schema( {
       type: [ ContentItemSchema ],
       required: true,
    }
+}, {
+   timestamps: true
 } )
 
 ArticleSchema.method( "toJSON", function( doc, ret ){
