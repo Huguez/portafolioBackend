@@ -7,6 +7,7 @@ const connectDB = require("../db/config")
 const authRoute = require("../routes/auth")
 const articleRoute = require("../routes/article")
 const jobRoute = require("../routes/job")
+const certificationRoute = require("../routes/certification")
 
 const notFound = require("../middleware/notFound")
 
@@ -38,6 +39,8 @@ class Server {
       this.app.use( '/articles', articleRoute )
 
       this.app.use( "/jobs", jobRoute )
+
+      this.app.use( "/certifications", certificationRoute )
 
       this.app.use( "/*", notFound )
    }
