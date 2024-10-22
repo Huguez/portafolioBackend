@@ -13,6 +13,16 @@ const UserSchema = Schema( {
    password: {
       type: Schema.Types.String,
       required: true,
+   },
+   description:{
+      type: [ Schema.Types.String ],
+      required: false,
+      default: [],
+   },
+   image: {
+      type: Schema.Types.String,
+      required: false,
+      default: "",
    }
 }, {
    timestamps: true

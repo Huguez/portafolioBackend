@@ -25,7 +25,7 @@ const createJob = async ( req, res ) => {
 const getAllJobs = async ( req, res ) => {
    try {
       // ToDo: implementar query params
-      const jobs = await Job.find({}).sort( { startDate: "asc" } )
+      const jobs = await Job.find({}).sort( { startDate: "desc" } )
 
 
       return res.status( 200 ).json({

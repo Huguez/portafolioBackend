@@ -51,7 +51,7 @@ const createCertification = async ( req = request, res = response ) => {
 
       const certification = new Certification( body )
 
-      await certification.save ()
+      await certification.save()
 
       return res.status( 200 ).json( {
          ok: true,
