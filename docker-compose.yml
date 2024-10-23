@@ -1,0 +1,26 @@
+services:
+  portafolioDB:
+    image: mongo:8.0.0-rc4
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - "${MONGODB_PORT}:${MONGODB_PORT}"
+    volumes:
+      - portafolio_vol:/data/db
+    networks:
+      - portafolioDB_network
+  mongo-client:
+    image: mongo-express:1.0.2-20
+    container_name: ${CONTAINER_NAME}-client
+    depends_on:
+      - portafolioDB
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=portafolioDB
+      - ME_CONFIG_MONGODB_PORT=${MONGODB_PORT}
+    ports:
+      - 8081:8081
+    networks:
+      - portafolioDB_network
+volumes:
+  portafolio_vol:
+networks:
+  portafolioDB_network:
