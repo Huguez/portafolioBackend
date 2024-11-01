@@ -21,14 +21,16 @@ const storage = multer.diskStorage({
 
 const upload = multer( { storage } )
 
-const { getAboutMe, updateUser } = require("../controllers/user")
+const { getAboutMe, updateUser, getResume } = require("../controllers/user")
 const validarCampos = require("../middleware/validarCampos")
 const validarJWT = require("../middleware/validateJWT")
 
 router.get( "/aboutMe",  getAboutMe )
 
+router.get( "/getResume", getResume )
+
 router.put( "/:id/updateUser", [
-   upload.single( 'photo' ),
+   upload.fields( [ { name: 'photo', maxCount: 1 }, { name: "cv", maxCount: 1 } ] ),
    check( "username", "Username is required" ).isString().notEmpty(),
    check( "description", "Description is required" ).isString().notEmpty(),
    validarJWT,

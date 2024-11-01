@@ -23,6 +23,11 @@ const UserSchema = Schema( {
       type: Schema.Types.String,
       required: false,
       default: "",
+   },
+   CV: {
+      type: Schema.Types.String,
+      required: false,
+      default: ""
    }
 }, {
    timestamps: true
